@@ -403,6 +403,11 @@ class WebKitWebViewController extends PlatformWebViewController {
   }
 
   @override
+  Future<void> initWithIdentifier(String? identifier) {
+    return WKWebsiteDataStore.initWithIdentifier(identifier);
+  }
+
+  @override
   Future<void> loadFile(String absoluteFilePath) {
     return _webView.loadFileUrl(
       absoluteFilePath,
