@@ -563,6 +563,9 @@ abstract class AuthenticationChallengeResponse {
 /// See https://developer.apple.com/documentation/webkit/wkwebsitedatastore.
 @ProxyApi(swiftOptions: SwiftProxyApiOptions(import: 'WebKit'))
 abstract class WKWebsiteDataStore extends NSObject {
+  @static
+  WKWebsiteDataStore initWithIdentifier(String? identifier);
+
   /// The default data store, which stores data persistently to disk.
   @static
   late WKWebsiteDataStore defaultDataStore;
@@ -650,6 +653,15 @@ abstract class UIScrollView extends UIView {
 @ProxyApi(swiftOptions: SwiftProxyApiOptions(import: 'WebKit'))
 abstract class WKWebViewConfiguration extends NSObject {
   WKWebViewConfiguration();
+
+  /// 新增初始化方法
+  @static
+  WKWebViewConfiguration initWithIdentifier(String? identifier);
+
+  /// 添加配置标识符
+  void setConfigurationIdentifier(String identifier);
+
+  String getConfigurationIdentifier();
 
   /// The object that coordinates interactions between your app’s native code
   /// and the webpage’s scripts and other content.
