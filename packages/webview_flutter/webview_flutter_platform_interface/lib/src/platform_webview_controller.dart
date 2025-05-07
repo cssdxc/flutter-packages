@@ -47,6 +47,12 @@ abstract class PlatformWebViewController extends PlatformInterface {
   /// The parameters used to initialize the [PlatformWebViewController].
   final PlatformWebViewControllerCreationParams params;
 
+  ///
+  Future<void> initWithIdentifier(String? identifier) {
+    throw UnimplementedError(
+        'WebView initWithIdentifier is not implemented on the current platform');
+  }
+
   /// Loads the file located on the specified [absoluteFilePath].
   ///
   /// The [absoluteFilePath] parameter should contain the absolute path to the

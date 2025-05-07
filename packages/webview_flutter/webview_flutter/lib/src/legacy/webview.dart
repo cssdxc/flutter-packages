@@ -9,8 +9,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/widgets.dart';
 // ignore: implementation_imports
-import 'package:webview_flutter_android/src/webview_flutter_android_legacy.dart';
-// ignore: implementation_imports
 import 'package:webview_flutter_platform_interface/src/webview_flutter_platform_interface_legacy.dart';
 // ignore: implementation_imports
 import 'package:webview_flutter_wkwebview/src/webview_flutter_wkwebview_legacy.dart';
@@ -119,8 +117,6 @@ class WebView extends StatefulWidget {
   static WebViewPlatform get platform {
     if (_platform == null) {
       switch (defaultTargetPlatform) {
-        case TargetPlatform.android:
-          _platform = SurfaceAndroidWebView();
         case TargetPlatform.iOS:
           _platform = CupertinoWebView();
         // ignore: no_default_cases
@@ -790,9 +786,7 @@ class CookieManager {
 
   CookieManager._() {
     if (WebViewCookieManagerPlatform.instance == null) {
-      if (Platform.isAndroid) {
-        WebViewCookieManagerPlatform.instance = WebViewAndroidCookieManager();
-      } else if (Platform.isIOS) {
+      if (Platform.isIOS) {
         WebViewCookieManagerPlatform.instance = WKWebViewCookieManager();
       } else {
         throw AssertionError(
