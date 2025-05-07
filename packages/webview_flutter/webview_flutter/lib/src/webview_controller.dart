@@ -124,6 +124,11 @@ class WebViewController {
   /// Implementation of [PlatformWebViewController] for the current platform.
   final PlatformWebViewController platform;
 
+  ///
+  Future<void> initWithIdentifier(String? identifier) {
+    return platform.initWithIdentifier(identifier);
+  }
+
   /// Loads the file located on the specified [absoluteFilePath].
   ///
   /// The [absoluteFilePath] parameter should contain the absolute path to the
