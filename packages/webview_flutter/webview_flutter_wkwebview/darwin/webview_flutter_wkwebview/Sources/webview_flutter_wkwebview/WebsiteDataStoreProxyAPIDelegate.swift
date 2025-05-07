@@ -13,11 +13,10 @@ class WebsiteDataStoreProxyAPIDelegate: PigeonApiDelegateWKWebsiteDataStore {
     return WKWebsiteDataStore.default()
   }
 
-  // 添加配置标识符支持
-  func initWithIdentifier(pigeonApi: PigeonApiWKWebViewConfiguration, identifier: String?) throws
-    -> WKWebViewConfiguration
+  func initWithIdentifier(pigeonApi: PigeonApiWKWebsiteDataStore, identifier: String?) throws
+    -> WKWebsiteDataStore
   {
-    let config = WKWebViewConfiguration()
+    let config: WKWebViewConfiguration = WKWebViewConfiguration()
     let uuid = UUID(uuidString: identifier) ?? UUID()
     let dataStore = WKWebsiteDataStore.init(forIdentifier: uuid)
     config.websiteDataStore = dataStore
