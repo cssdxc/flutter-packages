@@ -10,7 +10,6 @@ import 'platform_webview_cookie_manager.dart';
 import 'platform_webview_widget.dart';
 import 'types/types.dart';
 
-// TODO(bparrishMines): This should be removed once webview_flutter_android and
 // webview_flutter_wkwebview no longer depend on this file in tests.
 export 'types/types.dart';
 
