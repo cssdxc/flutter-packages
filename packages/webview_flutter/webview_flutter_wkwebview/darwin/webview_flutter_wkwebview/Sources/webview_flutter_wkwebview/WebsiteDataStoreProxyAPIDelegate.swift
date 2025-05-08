@@ -16,11 +16,21 @@ class WebsiteDataStoreProxyAPIDelegate: PigeonApiDelegateWKWebsiteDataStore {
   func initWithIdentifier(pigeonApi: PigeonApiWKWebsiteDataStore, identifier: String?) throws
     -> WKWebsiteDataStore
   {
-    let config: WKWebViewConfiguration = WKWebViewConfiguration()
-    let uuid = UUID(uuidString: identifier) ?? UUID()
-    let dataStore = WKWebsiteDataStore.init(forIdentifier: uuid)
-    config.websiteDataStore = dataStore
-    return config
+    if #available(iOS 17.0, *) {
+      var uuid: UUID
+      if let id = identifier, let parsedUUID = UUID(uuidString: id) {
+        uuid = parsedUUID
+      } else {
+        uuid = UUID()
+      }
+      let dataStore = WKWebsiteDataStore(forIdentifier: uuid)
+      let config: WKWebViewConfiguration = WKWebViewConfiguration()
+      config.websiteDataStore = dataStore
+      return dataStore
+    } else {
+      // iOS 17 以下版本使用默认数据存储
+      return WKWebsiteDataStore.default()
+    }
   }
 
   func httpCookieStore(pigeonApi: PigeonApiWKWebsiteDataStore, pigeonInstance: WKWebsiteDataStore)
