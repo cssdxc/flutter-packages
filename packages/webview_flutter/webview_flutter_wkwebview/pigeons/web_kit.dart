@@ -654,15 +654,6 @@ abstract class UIScrollView extends UIView {
 abstract class WKWebViewConfiguration extends NSObject {
   WKWebViewConfiguration();
 
-  /// 新增初始化方法
-  @static
-  WKWebViewConfiguration initWithIdentifier(String? identifier);
-
-  /// 添加配置标识符
-  void setConfigurationIdentifier(String identifier);
-
-  String getConfigurationIdentifier();
-
   /// The object that coordinates interactions between your app’s native code
   /// and the webpage’s scripts and other content.
   void setUserContentController(WKUserContentController controller);
