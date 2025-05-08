@@ -2918,11 +2918,6 @@ final class PigeonApiUIScrollView: PigeonApiProtocolUIScrollView  {
 }
 protocol PigeonApiDelegateWKWebViewConfiguration {
   func pigeonDefaultConstructor(pigeonApi: PigeonApiWKWebViewConfiguration) throws -> WKWebViewConfiguration
-  /// 新增初始化方法
-  func initWithIdentifier(pigeonApi: PigeonApiWKWebViewConfiguration, identifier: String?) throws -> WKWebViewConfiguration
-  /// 添加配置标识符
-  func setConfigurationIdentifier(pigeonApi: PigeonApiWKWebViewConfiguration, pigeonInstance: WKWebViewConfiguration, identifier: String) throws
-  func getConfigurationIdentifier(pigeonApi: PigeonApiWKWebViewConfiguration, pigeonInstance: WKWebViewConfiguration) throws -> String
   /// The object that coordinates interactions between your app’s native code
   /// and the webpage’s scripts and other content.
   func setUserContentController(pigeonApi: PigeonApiWKWebViewConfiguration, pigeonInstance: WKWebViewConfiguration, controller: WKUserContentController) throws
@@ -2989,52 +2984,6 @@ withIdentifier: pigeonIdentifierArg)
       }
     } else {
       pigeonDefaultConstructorChannel.setMessageHandler(nil)
-    }
-    let initWithIdentifierChannel = FlutterBasicMessageChannel(name: "dev.flutter.pigeon.webview_flutter_wkwebview.WKWebViewConfiguration.initWithIdentifier", binaryMessenger: binaryMessenger, codec: codec)
-    if let api = api {
-      initWithIdentifierChannel.setMessageHandler { message, reply in
-        let args = message as! [Any?]
-        let identifierArg: String? = nilOrValue(args[0])
-        do {
-          let result = try api.pigeonDelegate.initWithIdentifier(pigeonApi: api, identifier: identifierArg)
-          reply(wrapResult(result))
-        } catch {
-          reply(wrapError(error))
-        }
-      }
-    } else {
-      initWithIdentifierChannel.setMessageHandler(nil)
-    }
-    let setConfigurationIdentifierChannel = FlutterBasicMessageChannel(name: "dev.flutter.pigeon.webview_flutter_wkwebview.WKWebViewConfiguration.setConfigurationIdentifier", binaryMessenger: binaryMessenger, codec: codec)
-    if let api = api {
-      setConfigurationIdentifierChannel.setMessageHandler { message, reply in
-        let args = message as! [Any?]
-        let pigeonInstanceArg = args[0] as! WKWebViewConfiguration
-        let identifierArg = args[1] as! String
-        do {
-          try api.pigeonDelegate.setConfigurationIdentifier(pigeonApi: api, pigeonInstance: pigeonInstanceArg, identifier: identifierArg)
-          reply(wrapResult(nil))
-        } catch {
-          reply(wrapError(error))
-        }
-      }
-    } else {
-      setConfigurationIdentifierChannel.setMessageHandler(nil)
-    }
-    let getConfigurationIdentifierChannel = FlutterBasicMessageChannel(name: "dev.flutter.pigeon.webview_flutter_wkwebview.WKWebViewConfiguration.getConfigurationIdentifier", binaryMessenger: binaryMessenger, codec: codec)
-    if let api = api {
-      getConfigurationIdentifierChannel.setMessageHandler { message, reply in
-        let args = message as! [Any?]
-        let pigeonInstanceArg = args[0] as! WKWebViewConfiguration
-        do {
-          let result = try api.pigeonDelegate.getConfigurationIdentifier(pigeonApi: api, pigeonInstance: pigeonInstanceArg)
-          reply(wrapResult(result))
-        } catch {
-          reply(wrapError(error))
-        }
-      }
-    } else {
-      getConfigurationIdentifierChannel.setMessageHandler(nil)
     }
     let setUserContentControllerChannel = FlutterBasicMessageChannel(name: "dev.flutter.pigeon.webview_flutter_wkwebview.WKWebViewConfiguration.setUserContentController", binaryMessenger: binaryMessenger, codec: codec)
     if let api = api {
